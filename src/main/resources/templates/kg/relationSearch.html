@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="share/layout">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>全局关系查询</title>
+
+    <link th:href="@{/wangeditor/wangEditor.css}" rel="stylesheet"/>
+    <!-- 引入样式 -->
+    <!--    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <style type="text/css">
+
+        .el-col {
+            border-radius: 4px;
+        }
+
+        .bg-purple-dark {
+            background: #99a9bf;
+        }
+
+        .bg-purple {
+            background: #d3dce6;
+        }
+
+        .bg-purple-light {
+            background: #e5e9f2;
+        }
+
+        .grid-content {
+            border-radius: 4px;
+            min-height: 36px;
+        }
+
+        .row-bg {
+            padding: 10px 0;
+            background-color: #f9fafc;
+        }
+
+        .spaninput {
+            border-radius: 4px;
+            height: 100px;
+            width: 100%;
+            margin: 35%;
+
+        }
+
+        .headerdiv {
+            vertical-align: middle
+
+        }
+
+        .svgreship {
+            align-content: center;
+            margin-top: 20px;
+        }
+
+
+        .divinputLeft {
+            /*border: 2px;*/
+            /*border-color: #1cc09f;*/
+            /*float: left;*/
+            /*margin-top: 10px;*/
+            width: 300px;
+            align-items: center;
+        }
+
+        .el-input-inner {
+            /*    border: 2px;*/
+            /*    border-color: #1cc09f;*/
+            /*    float: right;*/
+            /*margin-top: 10px;*/
+            width: 300px;
+            align-items: center;
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+<div layout:fragment="content">
+    <el-container class="container">
+        <div class="grid-content bg-purple-dark">
+            <el-header style="text-align: center;  font-size: 12px" height="100px">
+                <h1>关系查询</h1>
+                <span class="spaninput">
+                <div class="headerdiv">
+
+<!--                    // v-model="inputSource"-->
+                    <el-input v-model="inputSource" type="text" placeholder="请输入内容" class="divinputLeft"
+                              @keyup.enter.native="setinputsource"></el-input>
+                    <el-input v-model="inputTarget" type="text" placeholder="请输入内容" class="el-input-inner"
+                              @keyup.enter.native="setinputtarget" th:width="200px"></el-input>
+                    <el-button type="button" icon="el-icon-search" @click="getdomaingraphSec">搜索</el-button>
+                </div>
+                </span>
+
+
+                <!--                节点颜色指南-->
+                <!--                <span>-->
+                <!--                    <div style="margin-top: 20px ;width: 100px">-->
+
+                <!--                        <table border="2px">-->
+                <!--                             <tr>-->
+                <!--                                 <td>-->
+                <!--                                     <h4>节点颜色：</h4>-->
+                <!--                                 </td>-->
+                <!--                             </tr>-->
+                <!--                            <tr>-->
+                <!--                                <td style="color:#FF2902 ">起点</td>-->
+                <!--                            </tr>-->
+                <!--                            <tr>-->
+                <!--                                <td style="color: #f9bb05">关系节点</td>-->
+                <!--                            </tr>-->
+                <!--                            <tr>-->
+                <!--                                <td style="color: #5C84FF">终点</td>-->
+                <!--                            </tr>-->
+
+                <!--                        </table>-->
+                <!--                    </div>-->
+                <!--                </span>-->
+
+
+            </el-header>
+
+        </div>
+
+        <el-main>
+            <el-breadcrumb separator="/" class="crumbs">
+                <div id="graphcontainer" class="graphcontainer"></div>
+
+                <!--                <h2>节点说明:</h2>-->
+                <!--                <h5 style="font-size: 15px"><b style="color:#ff4500 ">枢椎齿状突骨折</b>: 因枕后部受打击，由水平剪切与轴向压缩暴力共同作用造成 </h5>-->
+
+                <!--                <h5 style="font-size: 15px"><b style="color:#ff4500 ">单侧关节突关节脱位</b>: 当头部撞击地面或打击头颈部时，致颈部屈曲伴一侧旋转而脱位，造成椎间孔变形或狭窄，进而发生神经根受压</h5>-->
+
+
+                <span class="node_pd" v-for="(m,k) in nodedetail">
+                    <h3 style="line-height: 25px">{{m}}</h3>
+
+                    <!--                                        <h3> <b style="color:#ff4500 ">{{item.text}}</b>:{{item}}</h3>-->
+                    </span>
+
+            </el-breadcrumb>
+        </el-main>
+
+        <el-footer th:height="40px" style="text-align: center" class="el-col">
+
+            <!--                <span class="node_pd" v-once>节点说明: </span>-->
+            <!--            <div id="nodedetail" >   //class="node_detail"-->
+
+
+            <h3 style="margin: auto">--------------- 报备 ---------------</h3>
+            <!--                <span  for="(m,k) in nodedetail">{{k}}:{{m}}</span>-->
+            <!--            </div>-->
+
+
+        </el-footer>
+
+    </el-container>
+
+
+    <!--    <el-row>-->
+    <!--        <el-col :span="24">-->
+    <!--            <div class="grid-content bg-purple-dark"></div>-->
+    <!--        </el-col>-->
+    <!--    </el-row>-->
+
+
+</div>
+
+<div layout:fragment="jscontent">
+    <script src="https://cdn.bootcss.com/lodash.js/3.5.0/lodash.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js" th:src="@{/js/d3.v4.min.js}"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"
+            th:src="@{/js/html2canvas.min.js}"></script>
+    <script type="text/javascript" th:src="@{/wangeditor/wangEditor.js}"></script>
+    <script th:inline="javascript" type="text/javascript">
+        var initdomain = function () {
+            var domain = [[${domain}]];
+            var domainid = [[${domainid}]];
+            this.domain = domain;
+            this.domainid = domainid;
+        }
+    </script>
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/RelationSearch.js}"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script>
+        var massage = "detail";
+
+
+    </script>
+</div>
+</body>
+</html>

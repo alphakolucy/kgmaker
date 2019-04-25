@@ -1,0 +1,215 @@
+﻿<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="share/layout">
+
+<head>
+    <title>知识图谱可视化</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link th:href="@{/wangeditor/wangEditor.css}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <link rel="stylesheet" type="text/css" href="../showmyself/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="../showmyself/css/style.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="../showmyself/css/layout.css">-->
+
+<!--    <style type="text/css">-->
+<!--        .pl-20 {-->
+<!--            padding-left: 20px-->
+<!--        }-->
+
+<!--        text {-->
+<!--            cursor: pointer;-->
+<!--            max-width: 25px;-->
+<!--            display: inline-block;-->
+<!--            white-space: nowrap;-->
+<!--            overflow: hidden;-->
+<!--            text-overflow: ellipsis;-->
+<!--            vertical-align: middle;-->
+<!--        }-->
+
+<!--        circle {-->
+<!--            cursor: pointer;-->
+<!--        }-->
+
+<!--        #graphcontainerdiv {-->
+<!--            background: #fff;-->
+<!--        }-->
+
+<!--        .el-color-picker__panel {-->
+<!--            left: 812px !important;-->
+<!--        }-->
+
+<!--        .wange-toolbar {-->
+<!--            border: 1px solid #ccc;-->
+<!--        }-->
+
+<!--        .wangeditor-form {-->
+<!--            border: 1px solid #ccc;-->
+<!--            height: 350px;-->
+<!--            min-height: 340px-->
+<!--        }-->
+
+<!--        .mind-fj-box {-->
+<!--            display: inline-block;-->
+<!--            width: 290px;-->
+<!--            padding: 5px;-->
+<!--            border: 1px solid #e6e6e6;-->
+<!--            box-shadow: 0 0 8px rgba(206, 205, 201, .38);-->
+<!--        }-->
+
+<!--        .mind-fj-p {-->
+<!--            color: #666;-->
+<!--            line-height: 24px;-->
+<!--            padding: 5px;-->
+<!--            background: rgba(255, 255, 255, .85);-->
+<!--        }-->
+
+<!--        .mind-carousel + .mind-fj-p .el-scrollbar__wrap {-->
+<!--            height: auto;-->
+<!--            max-height: 220px;-->
+<!--            min-height: 0;-->
+<!--        }-->
+
+<!--        .carous-img {-->
+<!--            height: 100%;-->
+<!--            background: rgba(0, 0, 0, .10);-->
+<!--            line-height: 197px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .carous-img img {-->
+<!--            max-width: 100%;-->
+<!--            max-height: 100%;-->
+<!--            line-height: 197px;-->
+<!--            vertical-align: middle;-->
+<!--        }-->
+
+<!--        .circle_opreate {-->
+<!--            display: none;-->
+<!--        }-->
+
+<!--        .node_detail {-->
+<!--            position: absolute;-->
+<!--            width: 100%;-->
+<!--            line-height: 35px;-->
+<!--            -webkit-border-radius: 10px;-->
+<!--            -moz-border-radius: 10px;-->
+<!--            border-radius: 10px;-->
+<!--            font-size: 12px;-->
+<!--            padding-bottom: 10px;-->
+<!--            background: rgba(198, 226, 255, 0.2);-->
+<!--            display: none;-->
+<!--        }-->
+
+<!--        .node_pd {-->
+<!--            padding: 4px;-->
+<!--            font-size: 13px;-->
+<!--            font-family: -webkit-body;-->
+<!--            font-weight: 600;-->
+<!--        }-->
+
+<!--        .operatetips {-->
+<!--            position: absolute;-->
+<!--            right: 10px;-->
+<!--            float: right;-->
+<!--            top: 0;-->
+<!--            width: 220px;-->
+<!--            padding: 30px;-->
+<!--            border: 2px #EE7942 solid;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+<!--    </style>-->
+
+
+</head>
+
+<body>
+<!--<div layout:fragment="content">-->
+<!--    <div class="container">-->
+        <div class="row">
+            <!--overview start-->
+
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="page-header"><i class="fa fa-indent"></i> 实体百科 </h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="\">Home</a></li>
+                            <li><i class="fa fa-search"></i><a href="../">命名实体识别</a></li>
+                            <li><i class="fa fa-indent"></i>实体百科</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main_wrap2">
+        <div class="pro_show">
+            <div class="pro_con">
+                <!--            style="background-image: url('images/im1.jpg')"-->
+                <div class="pro_con_left"  style="background-image: url('../showmyself/images/im1.jpg')">
+
+                </div>
+                <div class="pro_con_right">
+                    <p>颈椎脱位型骨折</p>
+                    <table>
+                        <tr>
+                            <td>类属：</td>
+                            <td>....</td>
+                        </tr>
+                        <tr>
+                            <td>介绍：</td>
+                            <td>分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤</td>
+                        </tr>
+
+                    </table>
+                    <button class="btn btn-green">查看更多</button>
+                </div>
+            </div>
+
+            <div class="pro_con">
+                <!--            style="background-image: url('images/im2.jpg')"-->
+                <div class="pro_con_left right">
+                </div>
+                <div class="pro_con_right">
+                    <p>寰椎爆裂性骨折</p>
+                    <table>
+                        <tr>
+                            <td>类属：</td>
+                            <td>....</td>
+                        </tr>
+                        <tr>
+                            <td>介绍：</td>
+                            <td>亦称Jefferson骨折。当头顶受打击或高坠头顶着地时，垂直暴力传至枕骨髁，致寰椎双侧块分离，寰椎前、后弓薄弱部骨折，因椎管变宽，一般不会出现脊髓损伤。</td>
+                        </tr>
+
+                    </table>
+                    <button class="btn btn-green">查看更多</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+<!--</div>-->
+
+</body>
+
+<div layout:fragment="jscontent">
+    <script src="https://cdn.bootcss.com/lodash.js/3.5.0/lodash.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js" th:src="@{/js/d3.v4.min.js}"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" th:src="@{/js/html2canvas.min.js}"></script>
+    <script type="text/javascript" th:src="@{/wangeditor/wangEditor.js}"></script>
+    <script th:inline="javascript" type="text/javascript">
+        var initdomain = function () {
+            var domain = [[${domain}]];
+            var domainid = [[${domainid}]];
+            this.domain = domain;
+            this.domainid = domainid;
+        }
+    </script>
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/kgbuilder.js}"></script>
+</div>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+
+<body>
+<div th:fragment="focus">
+    <div ref="followUs" v-bind:class="[scrollTop>followUsPosition ? 'gd' : '', 'guanzhu']" id="follow-us">
+        <h2 class="hometitle">关注我 么么哒！</h2>
+        <ul>
+            <li class="qq"><a href="/" target="_blank"><span>邮箱</span>391185550@qq.com</a></li>
+
+        </ul>
+    </div>
+</div>
+</body>
+
+</html>
