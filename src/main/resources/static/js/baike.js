@@ -1,8 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-        ids: [],
-        feNodeDetail: "",
+        baiKeName:'单侧关节突关节脱位',
         detailMsg: "",
         inputSource: '寰椎爆裂性', //枢椎齿状突骨折  寰椎爆裂性
         inputTarget: '脱位型骨折', //单侧关节突关节脱位 颈椎损伤 关节脱位
@@ -116,6 +115,28 @@ var app = new Vue({
         getMassage() {
 
         },
+
+
+        getBaiKe(){
+
+
+            var _this = this;
+            var data = {baiKeName: _this.baiKeName};
+            $.ajax({
+                data: data,
+                type: "GET",
+                url: contextRoot + "getBaiKeEntity/"+data.baiKeName,
+                success: function (result) {
+                    if (result.code == 200) {
+                        _this.baiKe.detail = result.data.detail;
+                        _this.baiKe.belong = result.data.belong;
+                        _this.baiKe.name = result.data.name;
+
+                    }
+                }
+            })
+        },
+
 
 
         btntipsclose() {

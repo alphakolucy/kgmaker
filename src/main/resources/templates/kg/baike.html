@@ -155,118 +155,99 @@
 
 
             <div style="text-align:center; vertical-align:middle">
-                <el-input placeholder="请输入你要查询的内容" style="width: 300px " clearable></el-input>
-                <el-button type="primary" icon="el-icon-search"> 搜索</el-button>
+                <el-input v-model="baiKeName" placeholder="请输入你要查询的内容" style="width: 300px " clearable></el-input>
+                <el-button type="primary" icon="el-icon-search" @click="getBaiKe"> 搜索</el-button>
             </div>
 
-            <el-card class="box-card" body-style="50px" shadow="hover"
-                     style="width: 800px;margin: auto;margin-top: 200px">
+            <!--            card-->
+            <!--            <el-row>-->
+            <!--                <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">-->
+
+            <div>
+                <!--                <el-card class="box-card" body-style="50px" shadow="hover"-->
+                <!--                         style="width: 150px;margin: auto;margin-top: 200px">-->
+
+                <!--                    <template>-->
+                <!--                        <el-table-->
+                <!--                                :data="tableData"-->
+                <!--                                style="width: 100%">-->
+                <!--                            <el-table-column style="text-align: center"-->
+                <!--                                             prop="name"-->
+                <!--                                             label="病症"-->
+                <!--                                             width="100">-->
+                <!--                            </el-table-column>-->
+                <!--                        </el-table>-->
+                <!--                    </template>-->
+                <!--                </el-card>-->
 
 
-                <div class="image">
-                    <p>颈椎脱位型骨折</p>
-                    <table style="border-collapse: separate;border-spacing: 10px 35px">
-                        <tr>
-                            <td width="50border-collapse: separate;px">类属：</td>
-                            <td>分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈....分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈</td>
-                        </tr>
-                        <tr>
-                            <td>介绍：</td>
-                            <td>
-                                分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>治疗：</td>
-                            <td>
-                                分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>预防：</td>
-                            <td>
-                                分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>预防：</td>
-                            <td>
-                                分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td>
-                            </td>
-                        </tr>
-
-                    </table>
-
-                    <template>
-                        <el-table
-                                :data="tableData"
-                                style="width: 100%">
-                            <el-table-column
-                                    prop="date"
-                                    label="日期"
-                                    width="180">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="name"
-                                    label="姓名"
-                                    width="180">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="address"
-                                    label="地址">
-                            </el-table-column>
-                        </el-table>
-                    </template>
-                </div>
-            </el-card>
-            <!--                    </el-col>-->
-            <!--                </el-row>-->
-
-            <!--                <el-card class="box-card" body-style="50px" shadow="hover" style="width: 500px">-->
-            <!--                    <div>-->
-            <!--                        <p>颈椎脱位型骨折</p>-->
-            <!--                        <table>-->
-            <!--                            <tr>-->
-            <!--                                <td>类属：</td>-->
-            <!--                                <td>....</td>-->
-            <!--                            </tr>-->
-            <!--                            <tr>-->
-            <!--                                <td>介绍：</td>-->
-            <!--                                <td>分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤-->
-            <!--                                </td>-->
-            <!--                            </tr>-->
-
-            <!--                        </table>-->
-            <!--                    </div>-->
-            <!--                </el-card>-->
+                <el-card class="box-card" body-style="50px" shadow="hover"
+                         style="width: 800px;margin: auto;margin-top: 200px">
 
 
-            <!--            </el-breadcrumb>-->
+                    <div class="image" th:data="baiKe">
+                        <div><h1>中文学名:{{baiKe.name}}</h1></div>
+                        <table th:data="baiKe" style="border-collapse: separate;border-spacing: 10px 35px">
+                            <tr>
+                                <td width="50border-collapse: separate;px">类属：</td>
+                                <td>{{baiKe.belong}}</td>
+                            </tr>
+                            <tr>
+                                <td>介绍：</td>
+                                <td>
+                                    {{baiKe.detail}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>治疗：</td>
+                                <td>
+                                    分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>预防：</td>
+                                <td>
+                                    分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>小贴士：</td>
+                                <td>
+                                    分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </el-card>
+            </div>
+            <!--                </el-col>-->
+            <!--            </el-row>-->
 
 
             <!--            Collapse -->
@@ -302,59 +283,6 @@
 
     </el-container>
 </div>
-
-
-<!--<el-container class="container">-->
-<!--    <el-header style="text-align: center;  font-size: 12px" height="100px">-->
-<!--       -->
-<!--        &lt;!&ndash;            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">&ndash;&gt;-->
-<!--    </el-header>-->
-<!--    <el-main>-->
-<!--        <el-breadcrumb separator="/" class="crumbs">-->
-<!--            <legend>法医百科</legend>-->
-
-
-<!--            <div class="pro_con_left" style="background-image: url('../showmyself/images/im1.jpg')"></div>-->
-<!--            <div class="pro_con_right">-->
-<!--                <p>颈椎脱位型骨折</p>-->
-<!--                <table>-->
-<!--                    <tr>-->
-<!--                        <td>类属：</td>-->
-<!--                        <td>....</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>介绍：</td>-->
-<!--                        <td>分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤-->
-<!--                        </td>-->
-<!--                    </tr>-->
-
-<!--                </table>-->
-<!--                <button class="btn btn-green">查看更多</button>-->
-<!--            </div>-->
-
-
-<!--            <div class="pro_con">-->
-<!--                &lt;!&ndash;            style="background-image: url('images/im2.jpg')"&ndash;&gt;-->
-<!--                <div class="pro_con_left right">-->
-<!--                </div>-->
-<!--                <div class="pro_con_right">-->
-<!--                    <p>寰椎爆裂性骨折</p>-->
-<!--                    <table>-->
-<!--                        <tr>-->
-<!--                            <td width="10">类属：</td>-->
-<!--                            <td>....</td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>介绍：</td>-->
-<!--                            <td>亦称Jefferson骨折。当头顶受打击或高坠头顶着地时，垂直暴力传至枕骨髁，致寰椎双侧块分离，寰椎前、后弓薄弱部骨折，因椎管变宽，一般不会出现脊髓损伤。</td>-->
-<!--                        </tr>-->
-
-<!--                    </table>-->
-<!--                    <button class="btn btn-green">查看更多</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </el-breadcrumb>-->
-<!--    </el-main>-->
 
 
 <!--</el-container>-->

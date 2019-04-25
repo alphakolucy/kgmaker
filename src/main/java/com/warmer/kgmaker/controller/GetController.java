@@ -33,10 +33,7 @@ public class GetController {
         return "kg/relationSearch";
     }
 
-    @GetMapping("kg/baike")
-    public String baike(Model model) {
-        return "kg/baike";
-    }
+
 
 
     @GetMapping("kg/test")
