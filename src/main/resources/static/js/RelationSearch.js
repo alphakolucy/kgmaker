@@ -4,8 +4,8 @@ var app = new Vue({
         ids: [],
         feNodeDetail: "",
         detailMsg: "",
-        inputSource: '', //枢椎齿状突骨折  寰椎爆裂性
-        inputTarget: '', //单侧关节突关节脱位 颈椎损伤 关节脱位  脱位型骨折
+        inputSource: '枢椎齿状突骨折', //枢椎齿状突骨折  寰椎爆裂性
+        inputTarget: '单侧关节突关节脱位', //单侧关节突关节脱位 颈椎损伤 关节脱位  脱位型骨折
         svg: null,
         timer: null,
         editor: null,

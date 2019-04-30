@@ -107,6 +107,16 @@
         clear: both
     }
 
+    .cardInf {
+        width: 800px;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    .treeCard {
+        margin-left: 20px;
+    }
+
 
 </style>
 
@@ -121,6 +131,8 @@
     <!--    <link rel="stylesheet" href="//localhost/static/css/layui.css" media="all">-->
     <!--    <link rel="stylesheet" th:href="@{"../layui/css/layui.all.css">-->
     <!--    <link th:href="@{/wangeditor/wangEditor.css}" rel="stylesheet"/>-->
+
+
 </head>
 
 
@@ -135,16 +147,16 @@
             <!--            -->
             <el-header height="100px">
                 <div>
-                    <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs">
+                    <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs" style="font-size: 30px">
                         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                         <el-breadcrumb-item><a href="/kg/baike">实体识别</a></el-breadcrumb-item>
                         <el-breadcrumb-item>法医百科</el-breadcrumb-item>
                     </el-breadcrumb>
                 </div>
-                <h1 style="font-size: 50px;text-align: left"> 法医百科</h1>
+                <!--                <h1 style="font-size: 50px;text-align: left"> 法医百科</h1>-->
 
 
-                <h2 style="text-align: right">这是一个很牛的法医百科</h2>
+                <!--                <h2 style="text-align: right">这是一个很牛的法医百科</h2>-->
 
 
             </el-header>
@@ -154,124 +166,183 @@
         <el-main>
 
 
-            <div style="text-align:center; vertical-align:middle">
-                <el-input v-model="baiKeName" placeholder="请输入你要查询的内容" style="width: 300px " clearable></el-input>
-                <el-button type="primary" icon="el-icon-search" @click="getBaiKe"> 搜索</el-button>
+            <!--            vertical-align:middle-->
+            <div style="text-align:center;">
+                <!--                ;margin-left: 300px-->
+                <el-input v-model="baiKeName" placeholder="请输入你要查询的内容" style="width: 500px"
+                          clearable></el-input>
+                <el-button type="primary" icon="el-icon-search"   @click="getBaiKe" style="margin-left: 10px"> 搜索
+                </el-button>
             </div>
 
-            <!--            card-->
-            <!--            <el-row>-->
-            <!--                <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">-->
 
             <div>
-                <!--                <el-card class="box-card" body-style="50px" shadow="hover"-->
-                <!--                         style="width: 150px;margin: auto;margin-top: 200px">-->
 
-                <!--                    <template>-->
-                <!--                        <el-table-->
-                <!--                                :data="tableData"-->
-                <!--                                style="width: 100%">-->
-                <!--                            <el-table-column style="text-align: center"-->
-                <!--                                             prop="name"-->
-                <!--                                             label="病症"-->
-                <!--                                             width="100">-->
-                <!--                            </el-table-column>-->
-                <!--                        </el-table>-->
-                <!--                    </template>-->
-                <!--                </el-card>-->
+                <el-row>
+                    <el-col span="16">
+                        <!--                    全部信息card-->
+                        <el-card class="box-card" body-style="50px" shadow="hover"
+                                 style="margin: auto;margin-top: 50px;width:1100px">
+                            <!--                            height: 900px;width:1600px;-->
+
+                            <el-row>
+                                <!--                                <el-col span="11">-->
+                                <el-card class="cardInf">
+                                    <div class="image" th:data="baiKe">
+                                        <div><h1>中文学名:{{baiKe.name}}</h1></div>
+                                        <table th:data="baiKe"
+                                               style="border-collapse: separate;border-spacing: 10px 35px">
+
+                                            <tr>
+                                                <td width="74px">类：</td>
+                                                <td>
+                                                    {{baiKe.label}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>属：</td>
+                                                <td>{{baiKe.belong}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>解释：</td>
+                                                <td>
+                                                    {{baiKe.detail}}
+                                                </td>
+                                            </tr>
 
 
-                <el-card class="box-card" body-style="50px" shadow="hover"
-                         style="width: 800px;margin: auto;margin-top: 200px">
+                                        </table>
 
 
-                    <div class="image" th:data="baiKe">
-                        <div><h1>中文学名:{{baiKe.name}}</h1></div>
-                        <table th:data="baiKe" style="border-collapse: separate;border-spacing: 10px 35px">
-                            <tr>
-                                <td width="50border-collapse: separate;px">类属：</td>
-                                <td>{{baiKe.belong}}</td>
-                            </tr>
-                            <tr>
-                                <td>介绍：</td>
-                                <td>
-                                    {{baiKe.detail}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>治疗：</td>
-                                <td>
-                                    分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>预防：</td>
-                                <td>
-                                    分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
-                                </td>
-                            </tr>
+                                    </div>
+                                </el-card>
+                                <!--                                </el-col>-->
 
-                            <tr>
-                                <td>小贴士：</td>
-                                <td>
-                                    分为屈曲型骨折脱位和伸展型骨折脱位，均为强大的屈曲压缩和旋转暴力或突然的上颈部前移、前倾，既有椎体骨折和椎间盘破裂，又有关节突脱位和广泛韧带损伤，常伴有脊髓损伤
-                                </td>
-                            </tr>
+                                <!--                                <el-col span="12" style="margin-left: 65px ">-->
+                                <el-card class="cardInf" style="margin-top: 30px">
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                </td>
-                            </tr>
+                                    <template>
+                                        <el-table
+                                                :data="baiKe.expertise"
+                                                style="width: 100%"
+                                                stripe
+                                                height="300">
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                </td>
-                            </tr>
+                                            <el-table-column prop="name" label="法医学鉴定">
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                </td>
-                            </tr>
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                </td>
-                            </tr>
-                        </table>
+                                                <el-table-column
+                                                        prop="name"
+                                                        label="鉴定内容"
+                                                        width="200px"
+                                                >
+                                                </el-table-column>
+                                                <el-table-column
+                                                        prop="detail"
+                                                        label="鉴定说明"
+                                                >
+                                                </el-table-column>
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </el-card>
+                                <!--                                </el-col>-->
+                            </el-row>
 
-                    </div>
-                </el-card>
+                            <el-row>
+                                <!--                                <el-col span="12" style="margin-top: 50px">-->
+                                <el-card class="cardInf" body-style="50px" shadow="hover"
+                                         style="margin-top: 30px">
+                                    <!--style="margin-right: 20px;width: 700px" -->
+                                    <template>
+                                        <el-table
+                                                :data="baiKe.clinic"
+                                                style="width: 100%"
+                                                stripe
+                                                height="300">
+
+                                            <el-table-column label="临床表现">
+
+                                                <el-table-column
+                                                        prop="name"
+                                                        label="表现内容"
+                                                        width="200px"
+                                                >
+                                                </el-table-column>
+                                                <el-table-column
+                                                        prop="detail"
+                                                        label="表现说明"
+                                                >
+                                                </el-table-column>
+
+
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </el-card>
+                                <!--                                </el-col>-->
+
+
+                                <!--                                <el-col span="12" style="margin-top: 50px">-->
+                                <el-card class="cardInf" body-style="50px" shadow="hover"
+                                         style="margin-top: 30px">
+                                    <!--                                        style="width:100%"-->
+
+                                    <template>
+                                        <el-table
+                                                :data="baiKe.causesAndMechanisms"
+                                                style="width: 100%"
+                                                stripe
+                                                height="300">
+
+                                            <el-table-column label="原因与机制">
+
+                                                <el-table-column
+                                                        prop="name"
+                                                        label="内容"
+                                                        width="200px"
+                                                >
+                                                </el-table-column>
+                                                <el-table-column
+                                                        prop="detail"
+                                                        label="说明"
+                                                >
+                                                </el-table-column>
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </el-card>
+                                <!--                                </el-col>-->
+                            </el-row>
+
+
+                        </el-card>
+                    </el-col>
+
+                    <el-col span="6">
+                        <el-card class="treeCard" style="margin-top: 50px;">
+                            <el-input
+                                    placeholder="输入关键字进行过滤"
+                                    v-model="filterText">
+                            </el-input>
+
+                            <el-tree
+                                    class="filter-tree"
+                                    :data="treeData"
+                                    :props="defaultProps"
+                                    default-expand-all
+                                    :filter-node-method="filterNode"
+                                    ref="tree2">
+                            </el-tree>
+                        </el-card>
+                    </el-col>
+
+
+                </el-row>
+
+
             </div>
-            <!--                </el-col>-->
-            <!--            </el-row>-->
-
-
-            <!--            Collapse -->
-            <!--            <div style="width: 1000px; margin: auto">-->
-            <!--                <el-collapse v-model="activeNames" @change="handleChange" style="text-align: center">-->
-            <!--                    <el-collapse-item title="从属 " name="1">-->
-            <!--                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>-->
-            <!--                        <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>-->
-            <!--                    </el-collapse-item>-->
-            <!--                    <el-collapse-item title="介绍 " name="2">-->
-            <!--                        <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>-->
-            <!--                        <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>-->
-            <!--                    </el-collapse-item>-->
-            <!--                    <el-collapse-item title="治疗 " name="3">-->
-            <!--                        <div>简化流程：设计简洁直观的操作流程；</div>-->
-            <!--                        <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>-->
-            <!--                        <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>-->
-            <!--                    </el-collapse-item>-->
-            <!--                    <el-collapse-item title="预防 " name="4">-->
-            <!--                        <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>-->
-            <!--                        <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>-->
-            <!--                    </el-collapse-item>-->
-            <!--                </el-collapse>-->
-            <!--            </div>-->
 
 
         </el-main>
@@ -284,45 +355,6 @@
     </el-container>
 </div>
 
-
-<!--</el-container>-->
-
-
-<!--<el-collapse v-model="activeNames" @change="handleChange">-->
-<!--    <el-collapse-item title="一致性 Consistency" name="1">-->
-<!--        <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>-->
-<!--        <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>-->
-<!--    </el-collapse-item>-->
-<!--    <el-collapse-item title="反馈 Feedback" name="2">-->
-<!--        <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>-->
-<!--        <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>-->
-<!--    </el-collapse-item>-->
-<!--    <el-collapse-item title="效率 Efficiency" name="3">-->
-<!--        <div>简化流程：设计简洁直观的操作流程；</div>-->
-<!--        <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>-->
-<!--        <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>-->
-<!--    </el-collapse-item>-->
-<!--    <el-collapse-item title="可控 Controllability" name="4">-->
-<!--        <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>-->
-<!--        <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>-->
-<!--    </el-collapse-item>-->
-<!--</el-collapse>-->
-
-
-<!--<script>-->
-<!--    layui.use(['element', 'layer'], function () {-->
-<!--        var element = layui.element;-->
-<!--        var layer = layui.layer;-->
-
-<!--        //监听折叠-->
-<!--        element.on('collapse(test)', function (data) {-->
-<!--            layer.msg('展开状态：' + data.show);-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-
-<!--<script src="../../static/js/layui.js" charset="utf-8"></script>-->
-<!--</div>-->
 
 <div layout:fragment="jscontent">
     <script src="https://cdn.bootcss.com/lodash.js/3.5.0/lodash.min.js"></script>
@@ -341,6 +373,10 @@
     <script th:inline="javascript" type="text/javascript" th:src="@{/js/baike.js}"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+    <!--    <script src="//unpkg.com/element-ui@2.8.2/lib/theme-chalk/index.css"></script>-->
+
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
 

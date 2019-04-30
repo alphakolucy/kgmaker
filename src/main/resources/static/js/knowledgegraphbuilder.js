@@ -679,7 +679,7 @@
         	   if(typeof(d.color)!="undefined"&& d.color != ''){
 	    		   return d.color
 	    	   	}
-	    	   return "#ff4500";
+	    	   return "#4abaff";
         	   });
            node.style("stroke-opacity", 0.6);
 	       node.append("title")// 为每个节点设置title

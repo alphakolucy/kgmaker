@@ -551,6 +551,13 @@ public class Neo4jUtil {
         return nodeIds;
     }
 
+
+    /**
+     * 获取
+     *
+     * @param cypherSql
+     * @return
+     */
     public List<Integer> getPathLengthList(String cypherSql) {
         List<Integer> pathLength = new ArrayList<>();
         List<String> nodeIds = new ArrayList<>();
@@ -577,7 +584,7 @@ public class Neo4jUtil {
                             pathLength.add(length);
                         }
                     }
-                    System.out.println(" 自循环 pathLength:" + pathLength);
+//                    System.out.println(" 自循环 pathLength:" + pathLength);
 
 
                 }
@@ -1075,7 +1082,7 @@ public class Neo4jUtil {
 
         details = cyclicQuery(startEndNodesList);
 
-        System.out.println(details.toString());
+
 
 
         mo.put("details", details);
@@ -1100,7 +1107,6 @@ public class Neo4jUtil {
             int size1 = detailByName.toString().length() - 1;
             String detailByNameStr = detailByName.toString().substring(1, size1);
             String s = detailByNameStr.replaceAll("=", ":");
-
             details.put(n, s);
             n++;
         }
@@ -1372,6 +1378,7 @@ public class Neo4jUtil {
         return model;
     }
 
+
     public <T> T GetEntityItem(String cypherSql, Class<T> type) {
         HashMap<String, Object> rss = new HashMap<String, Object>();
         try {
@@ -1403,6 +1410,7 @@ public class Neo4jUtil {
         T model = HashMapToObjectItem(rss, type);
         return model;
     }
+
 
     public HashMap<String, Object> GetEntity(String cypherSql) {
         HashMap<String, Object> rss = new HashMap<String, Object>();
@@ -1436,6 +1444,7 @@ public class Neo4jUtil {
         return rss;
     }
 
+
     public Integer executeScalar(String cypherSql) {
         Integer count = 0;
         try {
@@ -1456,6 +1465,7 @@ public class Neo4jUtil {
         }
         return count;
     }
+
 
     public HashMap<String, Object> GetRelevantEntity(String cypherSql) {
         HashMap<String, Object> rss = new HashMap<String, Object>();
@@ -1488,6 +1498,7 @@ public class Neo4jUtil {
         String propertiesString = jsonStr.replaceAll("\"(\\w+)\"(\\s*:\\s*)", "$1$2"); // 去掉key的引号
         return propertiesString;
     }
+
 
     public <T> String getkeyvalCyphersql(T obj) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -1552,6 +1563,7 @@ public class Neo4jUtil {
         return finasql;
     }
 
+
     public <T> List<T> HashMapToObject(List<HashMap<String, Object>> maps, Class<T> type) {
         try {
             List<T> list = new ArrayList<T>();
@@ -1593,6 +1605,7 @@ public class Neo4jUtil {
             throw new RuntimeException(e);
         }
     }
+
 
     public <T> T HashMapToObjectItem(HashMap<String, Object> map, Class<T> type) {
         try {

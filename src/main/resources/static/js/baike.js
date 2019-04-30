@@ -1,7 +1,99 @@
 var app = new Vue({
     el: '#app',
     data: {
-        baiKeName:'单侧关节突关节脱位',
+        filterText: '',
+
+        // treeData: [{
+        //     children: [{id: 337, label: "损伤程度与伤残等级"},
+        //         {id: 336, label: "损伤转归"},
+        //         {id: 335, label: "鉴别诊断"},
+        //         {id: 334, label: "损伤认定"},
+        //         {id: 333, label: "影像学所见"},
+        //         {id: 273, label: "腰间盘突出症"},
+        //         {id: 272, label: "胸间盘突出症"},
+        //         {id: 61, label: "颈间盘突出症"},
+        //         {id: 305, label: "损伤原因与机制"},
+        //         {id: 274, label: "脊柱损伤"}]
+        //     , id: 258, label: "外伤性椎间盘突出"
+        // }],
+
+        //     [{
+        //
+        //     children:
+        //
+        //         [{
+        //
+        //         children: [{
+        //             id: 9,
+        //             label: '脊髓损伤',
+        //
+        //         }, {
+        //             id: 10,
+        //             label: '脊柱损伤',
+        //             children: [
+        //
+        //                 {
+        //                     id: 2,
+        //                     label: '外伤性椎间盘突出',
+        //                     children: [{
+        //
+        //                         id: 10,
+        //                         label: '胸间盘突出症'
+        //                     }, {
+        //                         id: 11,
+        //                         label: '颈间盘突出症'
+        //                     }, {
+        //                         id: 12,
+        //                         label: '腰间盘突出症'
+        //                     }, {
+        //                         id: 13,
+        //                         label: '损伤认定'
+        //                     }, {
+        //                         id: 14,
+        //                         label: '鉴别诊断'
+        //                     }, {
+        //                         id: 15,
+        //                         label: '损伤转归'
+        //                     }, {
+        //                         id: 16,
+        //                         label: '影像学所见'
+        //                     }, {
+        //                         id: 17,
+        //                         label: '损伤程度与伤残等级'
+        //                     }, {
+        //                         id: 18,
+        //                         label: '损伤原因与机制'
+        //
+        //                     },]
+        //                 }, {
+        //                     id: 6,
+        //                     label: '脊柱骨折与脱位'
+        //                 }, {
+        //                     id: 3,
+        //                     label: '一级 3',
+        //                     children: [{
+        //                         id: 7,
+        //                         label: '二级 3-1'
+        //                     }, {
+        //                         id: 8,
+        //                         label: '二级 3-2'
+        //                     }]
+        //                 }],
+        //         },],
+        //         id: 4,
+        //         label: '脊柱与脊髓损伤'
+        //     }],
+        //     id: 1,
+        //     label: '法医临床学'
+        // }],
+
+
+
+        defaultProps: {
+            children: 'children',
+            label: 'label'
+        },
+        baiKeName: '外伤性椎间盘突出',  //单侧关节突关节脱位
         detailMsg: "",
         inputSource: '寰椎爆裂性', //枢椎齿状突骨折  寰椎爆裂性
         inputTarget: '脱位型骨折', //单侧关节突关节脱位 颈椎损伤 关节脱位
@@ -64,6 +156,18 @@ var app = new Vue({
             name: '',
             count: 0
         },
+        baiKe: {
+            belong: '',
+            detail: '',
+            label: '',
+            name: '',
+            id: 0,
+            clinic: [],
+            expertise: [],
+            warning: '',
+            causesAndMechanisms: []
+
+        },
         pageModel: {
             pageIndex: 1,
             pageSize: 10,
@@ -111,13 +215,22 @@ var app = new Vue({
     created() {
         this.getlabels();
     },
+
+    watch: {
+        filterText(val) {
+            this.$refs.tree2.filter(val);
+        }
+    },
     methods: {
         getMassage() {
 
         },
+        filterNode(value, data) {
+            if (!value) return true;
+            return data.label.indexOf(value) !== -1;
+        },
 
-
-        getBaiKe(){
+        getBaiKe() {
 
 
             var _this = this;
@@ -125,18 +238,24 @@ var app = new Vue({
             $.ajax({
                 data: data,
                 type: "GET",
-                url: contextRoot + "getBaiKeEntity/"+data.baiKeName,
+                url: contextRoot + "getBaiKeEntity/" + data.baiKeName,
                 success: function (result) {
                     if (result.code == 200) {
-                        _this.baiKe.detail = result.data.detail;
-                        _this.baiKe.belong = result.data.belong;
-                        _this.baiKe.name = result.data.name;
+
+                        _this.treeData = result.data.treeList;
+                        _this.baiKe.detail = result.data.nodeInfo.detail;
+                        _this.baiKe.belong = result.data.nodeInfo.belong;
+                        _this.baiKe.name = result.data.nodeInfo.name;
+                        _this.baiKe.clinic = result.data.clinic;
+                        _this.baiKe.expertise = result.data.expertise;
+                        _this.baiKe.label = result.data.label;
+                        _this.baiKe.causesAndMechanisms = result.data.causesAndMechanisms;
+
 
                     }
                 }
             })
         },
-
 
 
         btntipsclose() {
@@ -265,6 +384,8 @@ var app = new Vue({
                 }
             })
         },
+
+
         savenodecontent() {
             var _this = this;
             var data = {domainid: _this.domainid, nodeid: _this.selectnodeid, content: _this.editorcontent};
@@ -284,16 +405,22 @@ var app = new Vue({
                 }
             })
         },
+
+
         handlePictureCardPreview(item) {
             this.dialogImageUrl = this.imageurlformat(item);
             this.dialogimageVisible = true;
         },
+
+
         addnetimage() {
             if (this.netimageurl != '') {
                 this.nodeimagelist.push({file: this.netimageurl, imagetype: 1});
                 this.netimageurl = '';
             }
         },
+
+
         imagehandleRemove(url) {
             this.nodeimagelist.splice(this.nodeimagelist.indexOf(url), 1);
         },
@@ -543,6 +670,7 @@ var app = new Vue({
                 }
             });
         },
+
         btnaddsame() {
             this.operatetype = 1;
             this.isbatchcreate = true;
@@ -935,6 +1063,7 @@ var app = new Vue({
                 _this.nodebuttonAction = 'DELETE';
             });
         },
+
         createnode() {
             var _this = this;
             var data = _this.graphEntity;
@@ -967,6 +1096,7 @@ var app = new Vue({
                 }
             });
         },
+
         createSingleNode() {
             var _this = this;
             var data = {name: '', r: 50};
@@ -990,6 +1120,7 @@ var app = new Vue({
                 }
             });
         },
+
         addmaker() {
             var arrowMarker = this.svg.append("marker")
                 .attr("id", "arrow")
@@ -1003,6 +1134,7 @@ var app = new Vue({
             var arrow_path = "M0,-5L10,0L0,5";// 定义箭头形状
             arrowMarker.append("path").attr("d", arrow_path).attr("fill", "#4f76fc");
         },
+
         // addnodebutton() {
         //     var _this = this;
         //     var nodebutton = this.svg.append("defs").append("g")
@@ -1044,6 +1176,7 @@ var app = new Vue({
         //     })
         //     .attr("font-size", 10);
         // },
+
         dragstarted(d) {
             if (!d3.event.active) this.simulation.alphaTarget(0.3).restart();
             d.fx = d.x;

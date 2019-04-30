@@ -278,6 +278,10 @@ public class KGManagerController extends BaseController {
 //    }
 
 
+
+
+
+
     @ResponseBody
     @RequestMapping(value = "/updatenodename")
     public R<HashMap<String, Object>> updatenodename(String domain, String nodeid, String nodename) {

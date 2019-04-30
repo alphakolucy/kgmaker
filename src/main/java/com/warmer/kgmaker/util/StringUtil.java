@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.ObjectUtils;
 
-public class StringUtil {
+public class StringUtil   {
 	 /*
 	 * 是否为空字符串
      * @param str

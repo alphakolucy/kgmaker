@@ -7,6 +7,7 @@ public class ListUtils {
 
 
 
+
     public static List removeDuplicate(List list) {
         HashSet h = new HashSet(list);
         list.clear();

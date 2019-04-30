@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/")
-public class EncyclopaediaController  extends BaseController{
+public class EncyclopaediaController extends BaseController {
 
     @Autowired
     private EncyclopaediaService encyclopaediaService;
@@ -26,6 +26,7 @@ public class EncyclopaediaController  extends BaseController{
 
     /**
      * 百科页面
+     *
      * @param model
      * @return
      */
@@ -35,13 +36,14 @@ public class EncyclopaediaController  extends BaseController{
     }
 
     /**
-     * 获取百科信息（name detail)
+     * 获取百科信息（name detail  distinguish  cause  injure)
+     *
      * @param baiKeName
      * @return
      */
     @ResponseBody
     @GetMapping(value = "getBaiKeEntity/{baiKeName}")
-    public R<Map<String, Object>> getBaiKeEntity(@PathVariable("baiKeName")  String baiKeName) {
+    public R<Map<String, Object>> getBaiKeEntity(@PathVariable("baiKeName") String baiKeName) {
         R<Map<String, Object>> result = new R<>();
         try {
             if (!StringUtil.isBlank(baiKeName)) {
@@ -61,6 +63,6 @@ public class EncyclopaediaController  extends BaseController{
             result.code = 500;
             result.setMsg("服务器错误");
         }
-        return  result;
+        return result;
     }
 }
